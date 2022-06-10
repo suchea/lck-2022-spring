@@ -2,8 +2,8 @@
     <div class="set-info">
         <!-- 인증된 사용자일 경우 삭제 버튼 추가-->
         <%if(user != undefined && user.id == 0){%>
-            <div class="d-grid gap-2">
-                <button onclick="deleteSet(<%= e.mid %>,<%= e.sid %>, this.parentNode.parentNode)" type="button" class="btn btn-secondary">삭제</button>
+            <div class="d-grid gap-2 delete-button">
+                <button onclick="deleteSet(<%= e.mid %>,<%= e.sid %>, this.parentNode.parentNode)" type="button" class="btn btn-danger">삭제</button>
             </div>
         <%}%>
         <div class="header">

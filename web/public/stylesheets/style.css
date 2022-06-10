@@ -11,6 +11,10 @@ div#navbar {
   width: 100%;
 }
 
+div.delete-button {
+  padding: 8px;
+}
+
 ul.menu{
   list-style-type: none;
   overflow: hidden;
