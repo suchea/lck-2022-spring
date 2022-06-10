@@ -1,0 +1,105 @@
+<% for(let i=0; i<data.length; i++){ let e=data[i]; %>
+    <div class="set-info">
+        <!-- 인증된 사용자일 경우 삭제 버튼 추가-->
+        <%if(user != undefined && user.id == 0){%>
+            <div class="d-grid gap-2">
+                <button onclick="deleteSet(<%= e.mid %>,<%= e.sid %>, this.parentNode.parentNode)" type="button" class="btn btn-secondary">삭제</button>
+            </div>
+        <%}%>
+        <div class="header">
+            <!-- 경기 요약 정보 -->
+            <p class="match-title">
+                <!-- 경기 이름 ~~일차 ~~경기 ~~세트 -->
+                <%=e.day%>일차 <%=e.match_name%> <% if(e.sid !=0) {%><%=e.sid%>세트<% } %>
+            </p>
+            <!-- 날짜 -->
+            <p style="display:inline; position:absolute; left:0;"><%=e.date.toString().substring(3, 15);%></p>
+            <!-- 경과 시간 -->
+            <p style="display:inline; position:absolute; right:0;"><%=Math.floor(e.duration/60)%> : <%=e.duration%60%></p>
+        </div>
+        <!-- 팀별 요약 정보 -->
+        <div class="splitter">
+            <!-- 블루팀 -->
+            <div class="half<%=e.blue_win == 1? ' win' : ' loss'%>">
+                <!-- 킬스코어 -->
+                <p style="right: 0;" class="kill-score"><%=e.blue_kill%></p>
+                <div class="team-info">
+                    <!-- 팀 이름과 로고 -->
+                    <div class="info-block">
+                        <img class="team-logo" src="<%=api.getTeamLogo(e.blue.tid)%>"/>
+                        <p class="team-name"><%=e.blue.team_name%></p>
+                    </div>
+                </div>
+                <!-- 플레이어 요약 정보 -->
+                <div>
+                    <table class="player-stats">
+                        <tr>
+                            <th>챔피언</th>
+                            <th>유저네임</th>
+                            <th>K</th>
+                            <th>D</th>
+                            <th>A</th>
+                            <th>밴</th>
+                        </tr>
+                        <%for(let i=0; i<5 && i<e.players.length; i++){let p = e.players[i]; %>
+                            <tr>
+                                
+                                <td><img class="champion-icon" src="<%=api.championIcon(p.champion)%>"/></td>
+                                <!-- 플레이어 이름 -->
+                                <td><%=p.username%></td>
+                                <!-- 해당 경기에서 킬 수 -->
+                                <td><%=p.kills%></td>
+                                <!-- 해당 경기에서 데스 수 -->
+                                <td><%=p.death%></td>
+                                <!-- 해당 경기에서 어시스트 수 -->
+                                <td><%=p.assist%></td>
+                                <td><img class="champion-icon" src="<%=api.championIcon(p.ban)%>"/></td>
+                            </tr>
+                        <% } %> 
+                    </table>
+                </div>
+            </div>
+            
+            <!-- 레드 팀 -->
+            <div class="half<%=e.blue_win == 0? ' win' : ' loss'%>">
+                <!-- 킬스코어 -->
+                <p style="left: 0;" class="kill-score"><%=e.red_kill%></p>
+                <div class="team-info">
+                    <!-- 팀 이름과 로고 -->
+                    <div class="info-block">
+                        <img class="team-logo" src="<%=api.getTeamLogo(e.red.tid)%>"/>
+                        <p class="team-name"><%=e.red.team_name%></p>
+                    </div>
+                </div>
+                <!-- 플레이어 요약 정보 -->
+                <div>
+                    <table class="player-stats">
+                        <tr>
+                            <th>챔피언</th>
+                            <th>유저네임</th>
+                            <th>K</th>
+                            <th>D</th>
+                            <th>A</th>
+                            <th>밴</th>
+                        </tr>
+                        <%for(let i=5; i<10 && i<e.players.length; i++){let p = e.players[i]; %>
+                            <tr>
+                                <!-- 사용한 챔피언(캐릭터) -->
+                                <td><img class="champion-icon" src="<%=api.championIcon(p.champion)%>"/></td>
+                                <!-- 플레이어 이름 -->
+                                <td><%=p.username%></td>
+                                <!-- 해당 경기에서 킬 수 -->
+                                <td><%=p.kills%></td>
+                                <!-- 해당 경기에서 데스 수 -->
+                                <td><%=p.death%></td>
+                                <!-- 해당 경기에서 어시스트 수 -->
+                                <td><%=p.assist%></td>
+                                <td><img class="champion-icon" src="<%=api.championIcon(p.ban)%>"/></td>
+                            </tr>
+                        <% } %>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+<% } %> 

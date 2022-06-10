@@ -1,0 +1,146 @@
+body{
+  background-color: rgb(95, 95, 95);
+}
+
+div#navbar {
+  height: 50px;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.925);
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+ul.menu{
+  list-style-type: none;
+  overflow: hidden;
+  display: inline;
+  height: 50px;
+  margin: 0;
+  padding: 0;
+}
+
+ul.menu li{
+  display: inline-block;
+}
+
+div#container{
+  text-align: center;
+  margin: auto;
+  padding-top: 50px;
+  width: 100%;
+  width: 700px;
+}
+
+div#container-insert{
+  padding-top: 50px;
+  min-height: 0;
+  position: absolute;
+  left:50%;
+  top:0;
+  transform: translate(-50%,0);
+  text-align: center;
+  margin: auto;
+  width: 100%;
+  width: 900px;
+}
+
+div.set-info{
+  background-color: rgb(177, 177, 177);
+  position:relative;
+  margin: 20px 0;
+}
+
+div.header{
+  line-height: 50px;
+  height: 50px;
+  width: 100%;
+  text-align: center;
+  position:relative;
+  padding: 0;
+  margin: 0;
+}
+
+p.match-title{
+  display: inline;
+  font-size: 25px;
+}
+
+div.header p{
+  line-height: 50px;
+  padding: 0 10px;
+  margin: 0;
+}
+
+div.splitter{
+  display: flex;
+}
+
+div.half{
+  min-width: 250px;
+  position: relative;
+  flex: 1;
+  text-align: center;
+  margin: 0;
+  padding: 0 0 10px 0;
+}
+
+div.win{
+  flex: 1;
+  background-color: rgb(230, 244, 255);
+}
+
+p.kill-score{
+  display: inline;
+  position: absolute;
+  line-height: 120px;
+  padding: 0 10px;
+  margin: 0;
+  font-size: 20px;
+  font-style: bold;
+}
+
+.win p.kill-score{
+  color: blue;
+}
+
+.loss p.kill-score{
+  color: red;
+}
+
+div.team-info{
+  position:relative;
+  height: 120px;
+}
+
+img.team-logo{
+  height: 50px;
+}
+
+img.champion-icon{
+  height: 40px;
+}
+
+table.player-stats{
+  width: 100%;
+}
+
+div.info-block{
+  position:absolute;
+  top: 50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+}
+
+p.team-name{
+  margin: 0;
+  font-size: 20px;
+}
+
+input[type=number]{
+  width: 80px;
+}
+
+input[type=text]{
+  width: 100px;
+}

@@ -1,0 +1,94 @@
+<div style="background-color: rgba(37, 37, 37, 0.822); width: 100%; height: 100%; position: fixed; top:0; left: 0;" id="insert-popup-background"></div>
+<div id="container-insert">
+    <!-- 경기 데이터 입력 폼 -->
+    <form action="/insert" method="post" id="insert_form">
+        <!-- 승패 데이터 저장 -->
+        <input type="hidden" name="blue_win" id="blue_win" value=1>
+        <!-- 경기 데이터 -->
+        <div class="set-info" style="padding: 10px;">
+            <!-- 경기 요약 데이터 입력란 -->
+            <div class="header">
+                <p class="match-title">
+                    <!-- 몇일차 -->
+                    <input name="day" type=number class="form-control" style="display:inline-block" value=1>일차
+                    <!-- 경기 이름 -->
+                    <input name="match_name" class="form-control" style="display:inline-block" type=text value="1경기">
+                    <!-- 몇세트 -->
+                    <input name="set" class="form-control" style="display:inline-block" type=number value=1>세트
+                </p>
+                <p style="display:inline; position:absolute; left:0;">
+                    2022-
+                    <!-- 날짜 : 월 -->
+                    <input name="date_m" class="form-control" style="display:inline-block" type=number value=1>
+                    -
+                    <!-- 날짜 : 일 -->
+                    <input name="date_d" class="form-control"style="display:inline-block" type=number value=1>
+                </p>
+                <p style="display:inline; position:absolute; right:0;">
+                    <!-- 경기 소요 시간 : 분 -->
+                    <input name="time_m" class="form-control" style="display:inline-block" type=number value=0>
+                     : 
+                    <!-- 경기 소요 시간 : 초 -->
+                    <input name="time_s" class="form-control" style="display:inline-block" type=number value=0>
+                </p>
+            </div>
+            <!-- 세부 데이터 입력란 : 플레이어 데이터 -->
+            <div style="margin-top: 20px;">
+                <!-- 블루팀 -->
+                <div class="team-info">
+                    <div class="info-block">
+                        <!-- 팀 선택시 해당 팀의 플레이어들이 로드된다. -->
+                        <select name="blue_team" id="blue_team" class="form-select" aria-label="Default select example"
+                            onchange="blueTeamSelect()">
+                            <option value=-1 selected>블루팀</option>
+                            <!-- 팀 목록 ejs로 로드 -->
+                            <%for(let i=0; i<teams.length; i++){ let t=teams[i];%>
+                                <option value=<%=t.tid%>><%=t.team_name%>
+                                </option>
+                            <%}%>
+                        </select>
+                        <!-- 승/패 버튼 -->
+                        <div class="d-grid gap-2">
+                            <button id="blue_w" onclick="changeWin()" type="button" class="btn btn-secondary">승</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="blue_players">
+                    <!-- 팀 선택시 이곳에 플레이어 목록이 로드된다. -->
+                </div>
+            </div>
+            <div style="margin-top: 20px; padding-bottom: 20px;">
+                <!-- 레드팀 -->
+                <div class="team-info">
+                    <div class="info-block">
+                        <!-- 팀 선택시 해당 팀의 플레이어들이 로드된다. -->
+                        <select name="red_team" id="red_team" class="form-select" aria-label="Default select example"
+                            onchange="redTeamSelect()">
+                            <option value=-1 selected>레드팀</option>
+                            <!-- 팀 목록 ejs로 로드 -->
+                            <%for(let i=0; i<teams.length; i++){ let t=teams[i];%>
+                                <option value=<%=t.tid%>><%=t.team_name%>
+                                </option>
+                                <%}%>
+                        </select>
+                        <!-- 승/패 버튼 -->
+                        <div class="d-grid gap-2" style="display: inline;">
+                            <button id="red_w" onclick="changeWin()" type="button" class="btn btn-secondary">패</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="red_players">
+                    <!-- 팀 선택시 이곳에 플레이어 목록이 로드된다. -->
+                </div>
+            </div>
+        </div>
+        <div class="d-grid gap-2">
+             <!-- 폼 요청 보내기 -->
+            <button type="button" onclick="send()" class="btn btn-primary" style="display: block;">입력</button>
+        </div>
+        <div class="d-grid gap-2" style="margin-top: 10px;">
+            <!-- 팝업 닫기 -->
+            <button type="button" onclick="closepopup()" class="btn btn-secondary" style="display: block;">닫기</button>
+        </div>
+    </form>
+</div>

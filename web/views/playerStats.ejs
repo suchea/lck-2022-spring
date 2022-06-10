@@ -1,0 +1,364 @@
+<!-- 경기 입력 폼에서 사용되는 플레이어 세부 정보 입력란 -->
+<input type="hidden" value=0 name="<%=side%>_kill" id="<%=side%>_kill">
+<table class="player-stats">
+    <tbody>
+        <tr>
+            <th>챔피언</th>
+            <th>유저네임</th>
+            <th>K</th>
+            <th>D</th>
+            <th>A</th>
+            <th>밴</th>
+        </tr>
+        <%for(let i=0; i<5; i++){%>
+            <tr>
+                <td>
+                    <!-- 플레이어가 선택한 챔피언 -->
+                    <select name="<%=side%>_<%=i%>_pick" class="form-select" aria-label="Default select example">
+                        <option value=-1 selected>챔피언</option>
+                        <option value=0>아트록스</option>
+                        <option value=1>아리</option>
+                        <option value=2>아칼리</option>
+                        <option value=3>아크샨</option>
+                        <option value=4>알리스타</option>
+                        <option value=5>아무무</option>
+                        <option value=6>애니비아</option>
+                        <option value=7>애니</option>
+                        <option value=8>아펠리오스</option>
+                        <option value=9>애쉬</option>
+                        <option value=10>아우렐리온 솔</option>
+                        <option value=11>아지르</option>
+                        <option value=12>바드</option>
+                        <option value=13>블리츠크랭크</option>
+                        <option value=14>브랜드</option>
+                        <option value=15>브라움</option>
+                        <option value=16>케이틀린</option>
+                        <option value=17>카밀</option>
+                        <option value=18>카시오페아</option>
+                        <option value=19>초가스</option>
+                        <option value=20>코르키</option>
+                        <option value=21>다리우스</option>
+                        <option value=22>다이애나</option>
+                        <option value=23>드레이븐</option>
+                        <option value=24>문도 박사</option>
+                        <option value=25>에코</option>
+                        <option value=26>엘리스</option>
+                        <option value=27>이블린</option>
+                        <option value=28>이즈리얼</option>
+                        <option value=29>피들스틱</option>
+                        <option value=30>피오라</option>
+                        <option value=31>피즈</option>
+                        <option value=32>갈리오</option>
+                        <option value=33>갱플랭크</option>
+                        <option value=34>가렌</option>
+                        <option value=35>나르</option>
+                        <option value=36>그라가스</option>
+                        <option value=37>그레이브즈</option>
+                        <option value=38>그웬</option>
+                        <option value=39>헤카림</option>
+                        <option value=40>하이머딩거</option>
+                        <option value=41>일라오이</option>
+                        <option value=42>이렐리아</option>
+                        <option value=43>아이번</option>
+                        <option value=44>잔나</option>
+                        <option value=45>자르반 4세</option>
+                        <option value=46>잭스</option>
+                        <option value=47>제이스</option>
+                        <option value=48>진</option>
+                        <option value=49>징크스</option>
+                        <option value=50>카이사</option>
+                        <option value=51>칼리스타</option>
+                        <option value=52>카르마</option>
+                        <option value=53>카서스</option>
+                        <option value=54>카사딘</option>
+                        <option value=55>카타리나</option>
+                        <option value=56>케일</option>
+                        <option value=57>케인</option>
+                        <option value=58>케넨</option>
+                        <option value=59>카직스</option>
+                        <option value=60>킨드레드</option>
+                        <option value=61>클레드</option>
+                        <option value=62>코그모</option>
+                        <option value=63>르블랑</option>
+                        <option value=64>리 신</option>
+                        <option value=65>레오나</option>
+                        <option value=66>릴리아</option>
+                        <option value=67>리산드라</option>
+                        <option value=68>루시안</option>
+                        <option value=69>룰루</option>
+                        <option value=70>럭스</option>
+                        <option value=71>말파이트</option>
+                        <option value=72>말자하</option>
+                        <option value=73>마오카이</option>
+                        <option value=74>마스터 이</option>
+                        <option value=75>미스 포츈</option>
+                        <option value=76>오공</option>
+                        <option value=77>모데카이저</option>
+                        <option value=78>모르가나</option>
+                        <option value=79>나미</option>
+                        <option value=80>나서스</option>
+                        <option value=81>노틸러스</option>
+                        <option value=82>니코</option>
+                        <option value=83>니달 리</option>
+                        <option value=84>녹턴</option>
+                        <option value=85>누누와 윌럼프</option>
+                        <option value=86>올라프</option>
+                        <option value=87>오리아나</option>
+                        <option value=88>오른</option>
+                        <option value=89>판테온</option>
+                        <option value=90> 뽀삐</option>
+                        <option value=91>파이크</option>
+                        <option value=92>키아나</option>
+                        <option value=93>퀸</option>
+                        <option value=94>라칸</option>
+                        <option value=95>람머스</option>
+                        <option value=96>렉사이</option>
+                        <option value=97>렐</option>
+                        <option value=98>레나타 글라스크</option>
+                        <option value=99>레넥톤</option>
+                        <option value=100>렝가</option>
+                        <option value=101>리븐</option>
+                        <option value=102>럼블</option>
+                        <option value=103>라이즈</option>
+                        <option value=104>사미라</option>
+                        <option value=105>세주아니</option>
+                        <option value=106>세나</option>
+                        <option value=107>세라핀</option>
+                        <option value=108>세트</option>
+                        <option value=109>샤코</option>
+                        <option value=110>쉔</option>
+                        <option value=111>쉬바나</option>
+                        <option value=112>신지드</option>
+                        <option value=113>사이 온</option>
+                        <option value=114>시비르</option>
+                        <option value=115>스카너</option>
+                        <option value=116>소나</option>
+                        <option value=117>소라카</option>
+                        <option value=118>스웨인</option>
+                        <option value=119>사일러스</option>
+                        <option value=120>신드라</option>
+                        <option value=121>탐 켄치</option>
+                        <option value=122>탈리야</option>
+                        <option value=123>탈론</option>
+                        <option value=124>타릭</option>
+                        <option value=125>티 모</option>
+                        <option value=126>쓰레쉬</option>
+                        <option value=127>트리스타나</option>
+                        <option value=128>트런들</option>
+                        <option value=129>트린다미어</option>
+                        <option value=130>트위스티드 페이트</option>
+                        <option value=131>트위치</option>
+                        <option value=132>우디르</option>
+                        <option value=133>우르곳</option>
+                        <option value=134>바루스</option>
+                        <option value=135>베인</option>
+                        <option value=136>베이가</option>
+                        <option value=137>벨코즈</option>
+                        <option value=138>벡스</option>
+                        <option value=139>바이</option>
+                        <option value=140>비에고</option>
+                        <option value=141>빅토르</option>
+                        <option value=142>블라디미르</option>
+                        <option value=143>볼리베어</option>
+                        <option value=144>워윅</option>
+                        <option value=145>자야</option>
+                        <option value=146>제라스</option>
+                        <option value=147>신 짜오</option>
+                        <option value=148>야스오</option>
+                        <option value=149>요네</option>
+                        <option value=150>요릭</option>
+                        <option value=151>유미</option>
+                        <option value=152>자크</option>
+                        <option value=153>제드</option>
+                        <option value=154>제리</option>
+                        <option value=155>직스</option>
+                        <option value=156>질리언</option>
+                        <option value=157>조이</option>
+                        <option value=158>자이라</option>
+                    </select>
+                </td>
+                <td>
+                    <!-- 플레이어 선택 (pid) -->
+                    <select name="<%=side%>_<%=i%>_pid" class="form-select" aria-label="Default select example">
+                        <option value=-1 selected>플레이어</option>
+                        <%for(let j=0; j<players.length; j++){ let p=players[j];%>
+                            <option value=<%=p.pid%>><%=p.username%>
+                            </option>
+                            <%}%>
+                    </select>
+                </td>
+                <!-- 플레이어 킬 수 -->
+                <td><input name="<%=side%>_<%=i%>_k" class="form-control <%=side%>_k" style="display:inline-block" type=number value=0></td>
+                <!-- 플레이어 데스 수 -->
+                <td><input name="<%=side%>_<%=i%>_d" class="form-control" style="display:inline-block" type=number value=0></td>
+                <!-- 플레이어 어시스트 수 -->
+                <td><input name="<%=side%>_<%=i%>_a" class="form-control" style="display:inline-block" type=number value=0></td>
+                <td>
+                    <!-- 플레이어가 밴한 챔피언 -->
+                    <select name="<%=side%>_<%=i%>_ban" class="form-select" aria-label="Default select example">
+                        <option value=-1 selected>챔피언</option>
+                        <option value=0>아트록스</option>
+                        <option value=1>아리</option>
+                        <option value=2>아칼리</option>
+                        <option value=3>아크샨</option>
+                        <option value=4>알리스타</option>
+                        <option value=5>아무무</option>
+                        <option value=6>애니비아</option>
+                        <option value=7>애니</option>
+                        <option value=8>아펠리오스</option>
+                        <option value=9>애쉬</option>
+                        <option value=10>아우렐리온 솔</option>
+                        <option value=11>아지르</option>
+                        <option value=12>바드</option>
+                        <option value=13>블리츠크랭크</option>
+                        <option value=14>브랜드</option>
+                        <option value=15>브라움</option>
+                        <option value=16>케이틀린</option>
+                        <option value=17>카밀</option>
+                        <option value=18>카시오페아</option>
+                        <option value=19>초가스</option>
+                        <option value=20>코르키</option>
+                        <option value=21>다리우스</option>
+                        <option value=22>다이애나</option>
+                        <option value=23>드레이븐</option>
+                        <option value=24>문도 박사</option>
+                        <option value=25>에코</option>
+                        <option value=26>엘리스</option>
+                        <option value=27>이블린</option>
+                        <option value=28>이즈리얼</option>
+                        <option value=29>피들스틱</option>
+                        <option value=30>피오라</option>
+                        <option value=31>피즈</option>
+                        <option value=32>갈리오</option>
+                        <option value=33>갱플랭크</option>
+                        <option value=34>가렌</option>
+                        <option value=35>나르</option>
+                        <option value=36>그라가스</option>
+                        <option value=37>그레이브즈</option>
+                        <option value=38>그웬</option>
+                        <option value=39>헤카림</option>
+                        <option value=40>하이머딩거</option>
+                        <option value=41>일라오이</option>
+                        <option value=42>이렐리아</option>
+                        <option value=43>아이번</option>
+                        <option value=44>잔나</option>
+                        <option value=45>자르반 4세</option>
+                        <option value=46>잭스</option>
+                        <option value=47>제이스</option>
+                        <option value=48>진</option>
+                        <option value=49>징크스</option>
+                        <option value=50>카이사</option>
+                        <option value=51>칼리스타</option>
+                        <option value=52>카르마</option>
+                        <option value=53>카서스</option>
+                        <option value=54>카사딘</option>
+                        <option value=55>카타리나</option>
+                        <option value=56>케일</option>
+                        <option value=57>케인</option>
+                        <option value=58>케넨</option>
+                        <option value=59>카직스</option>
+                        <option value=60>킨드레드</option>
+                        <option value=61>클레드</option>
+                        <option value=62>코그모</option>
+                        <option value=63>르블랑</option>
+                        <option value=64>리 신</option>
+                        <option value=65>레오나</option>
+                        <option value=66>릴리아</option>
+                        <option value=67>리산드라</option>
+                        <option value=68>루시안</option>
+                        <option value=69>룰루</option>
+                        <option value=70>럭스</option>
+                        <option value=71>말파이트</option>
+                        <option value=72>말자하</option>
+                        <option value=73>마오카이</option>
+                        <option value=74>마스터 이</option>
+                        <option value=75>미스 포츈</option>
+                        <option value=76>오공</option>
+                        <option value=77>모데카이저</option>
+                        <option value=78>모르가나</option>
+                        <option value=79>나미</option>
+                        <option value=80>나서스</option>
+                        <option value=81>노틸러스</option>
+                        <option value=82>니코</option>
+                        <option value=83>니달 리</option>
+                        <option value=84>녹턴</option>
+                        <option value=85>누누와 윌럼프</option>
+                        <option value=86>올라프</option>
+                        <option value=87>오리아나</option>
+                        <option value=88>오른</option>
+                        <option value=89>판테온</option>
+                        <option value=90> 뽀삐</option>
+                        <option value=91>파이크</option>
+                        <option value=92>키아나</option>
+                        <option value=93>퀸</option>
+                        <option value=94>라칸</option>
+                        <option value=95>람머스</option>
+                        <option value=96>렉사이</option>
+                        <option value=97>렐</option>
+                        <option value=98>레나타 글라스크</option>
+                        <option value=99>레넥톤</option>
+                        <option value=100>렝가</option>
+                        <option value=101>리븐</option>
+                        <option value=102>럼블</option>
+                        <option value=103>라이즈</option>
+                        <option value=104>사미라</option>
+                        <option value=105>세주아니</option>
+                        <option value=106>세나</option>
+                        <option value=107>세라핀</option>
+                        <option value=108>세트</option>
+                        <option value=109>샤코</option>
+                        <option value=110>쉔</option>
+                        <option value=111>쉬바나</option>
+                        <option value=112>신지드</option>
+                        <option value=113>사이 온</option>
+                        <option value=114>시비르</option>
+                        <option value=115>스카너</option>
+                        <option value=116>소나</option>
+                        <option value=117>소라카</option>
+                        <option value=118>스웨인</option>
+                        <option value=119>사일러스</option>
+                        <option value=120>신드라</option>
+                        <option value=121>탐 켄치</option>
+                        <option value=122>탈리야</option>
+                        <option value=123>탈론</option>
+                        <option value=124>타릭</option>
+                        <option value=125>티 모</option>
+                        <option value=126>쓰레쉬</option>
+                        <option value=127>트리스타나</option>
+                        <option value=128>트런들</option>
+                        <option value=129>트린다미어</option>
+                        <option value=130>트위스티드 페이트</option>
+                        <option value=131>트위치</option>
+                        <option value=132>우디르</option>
+                        <option value=133>우르곳</option>
+                        <option value=134>바루스</option>
+                        <option value=135>베인</option>
+                        <option value=136>베이가</option>
+                        <option value=137>벨코즈</option>
+                        <option value=138>벡스</option>
+                        <option value=139>바이</option>
+                        <option value=140>비에고</option>
+                        <option value=141>빅토르</option>
+                        <option value=142>블라디미르</option>
+                        <option value=143>볼리베어</option>
+                        <option value=144>워윅</option>
+                        <option value=145>자야</option>
+                        <option value=146>제라스</option>
+                        <option value=147>신 짜오</option>
+                        <option value=148>야스오</option>
+                        <option value=149>요네</option>
+                        <option value=150>요릭</option>
+                        <option value=151>유미</option>
+                        <option value=152>자크</option>
+                        <option value=153>제드</option>
+                        <option value=154>제리</option>
+                        <option value=155>직스</option>
+                        <option value=156>질리언</option>
+                        <option value=157>조이</option>
+                        <option value=158>자이라</option>
+                    </select>
+                </td>
+            </tr>
+            <%}%>
+    </tbody>
+</table>

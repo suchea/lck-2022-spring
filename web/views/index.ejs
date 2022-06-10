@@ -1,0 +1,534 @@
+<!-- 경기 목록 -->
+<div id="container">
+    <div id="list">
+
+    </div>
+    <div id="spinner" style="margin-top: 20px;">
+        <div class="spinner-border text-primary" style="width: 8rem; height: 8rem;" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    <div style="height: 10rem;">
+        <div class="d-grid gap-2">
+            <button id="loadbtn" onclick="loadmore()" type="button" class="btn btn-secondary">더보기</button>
+        </div>
+    </div>
+</div>
+<!-- 메뉴 바 -->
+<div id="navbar">
+    <ul class="menu">
+        <li>
+            <a href="/"><img style="height: 50px; padding: 5px;" src="/public/lck.svg" /></a>
+        </li>
+        <li>
+            <!-- 팀 필터 선택 -->
+            <select id="team" class="form-select" aria-label="Default select example">
+                <option value=-1 selected>팀</option>
+                <option value=1>T1</option>
+                <option value=2>Gen.G eSports</option>
+                <option value=3>DWG KIA</option>
+                <option value=4>DRX</option>
+                <option value=5>KWANGDONG FREECS</option>
+                <option value=6>Fredit BRION</option>
+                <option value=7>kt Rolster</option>
+                <option value=8>NS RED FORCE</option>
+                <option value=9>Liiv Sandbox</option>
+                <option value=10>Hanwha Life Esports</option>
+            </select>
+        </li>
+        <li>
+            <!-- 플레이어 필터 선택 -->
+            <select id="player" class="form-select" aria-label="Default select example">
+                <option value=-1 selected>플레이어</option>
+                <option value=1>T1 Zeus</option>
+                <option value=2>T1 Oner</option>
+                <option value=3>T1 Faker</option>
+                <option value=4>T1 Gumayusi</option>
+                <option value=5>T1 Keria</option>
+                <option value=6>T1 Asper</option>
+                <option value=7>GEN Doran</option>
+                <option value=8>Gen Peanut</option>
+                <option value=9>Gen YoungJae</option>
+                <option value=10>GEN Chovy</option>
+                <option value=11>GEN Ruler</option>
+                <option value=12>GEN Lehends</option>
+                <option value=13>DK Burdol</option>
+                <option value=14>DK Hoya</option>
+                <option value=15>DK Nuguri</option>
+                <option value=16>DK Canyon</option>
+                <option value=17>DK ShowMaker</option>
+                <option value=18>DK deokdam</option>
+                <option value=19>DK Kellin</option>
+                <option value=20>DRX Kingen</option>
+                <option value=21>DRX Pyosik</option>
+                <option value=22>DRX Zeka</option>
+                <option value=23>DRX Taeyoon</option>
+                <option value=24>DRX Deft</option>
+                <option value=25>DRX BeryL</option>
+                <option value=26>KDF Kiin</option>
+                <option value=27>KDF Ellim</option>
+                <option value=28>KDF FATE</option>
+                <option value=29>KDF Leo</option>
+                <option value=30>KDF Teddy</option>
+                <option value=31>KDF Hoit</option>
+                <option value=32>BRO Sw0rd</option>
+                <option value=33>BRO Morgan</option>
+                <option value=34>BRO UmTi</option>
+                <option value=35>BRO Raptor</option>
+                <option value=36>BRO Lava</option>
+                <option value=37>BRO Hena</option>
+                <option value=38>BRO Delight</option>
+                <option value=39>KT Rascal</option>
+                <option value=40>KT GIDEON</option>
+                <option value=41>KT Cuzz</option>
+                <option value=42>KT Aria</option>
+                <option value=43>KT VicLa</option>
+                <option value=44>KT Aiming</option>
+                <option value=45>KT Life</option>
+                <option value=46>NS Canna</option>
+                <option value=47>NS Dread</option>
+                <option value=48>NS Bdd</option>
+                <option value=49>NS Ghost</option>
+                <option value=50>NS Peter</option>
+                <option value=51>NS Effort</option>
+                <option value=52>LSB Howling</option>
+                <option value=53>LSB Dove</option>
+                <option value=54>LSB Croco</option>
+                <option value=55>LSB Clozer</option>
+                <option value=56>LSB Envyy</option>
+                <option value=57>LSB Ice</option>
+                <option value=58>LSB Prince</option>
+                <option value=59>LSB Kael</option>
+                <option value=60>HLE DuDu</option>
+                <option value=61>HLE Willer</option>
+                <option value=62>HLE OnFleek</option>
+                <option value=63>HLE Karis</option>
+                <option value=64>HLE SamD</option>
+                <option value=65>HLE</option>
+                <option value=66>HLE Vsta</option>
+                <option value=67>BRO Soboro</option>
+                <option value=68>BRO Listo</option>
+                <option value=69>BRO Feisty</option>
+                <option value=70>BRO Gamin</option>
+                <option value=71>BRO Loopy</option>
+                <option value=72>LSB Hambak</option>
+                <option value=73>LSB Ten10</option>
+                <option value=74>LSB Prove</option>
+                <option value=75>GEN Ophelia</option>
+                <option value=76>Gen Quid</option>
+                <option value=77>HLE Baut</option>
+                <option value=78>HLE Seonbi</option>
+                <option value=79>NS Sylvie</option>
+                <option value=80>NS vital</option>
+                <option value=81>GEN Zest</option>
+                <option value=82>NS DnDn</option>
+                <option value=83>NS FIESTA</option>
+                <option value=84>GEN Lospa</option>
+                <option value=85>NS Blessing</option>
+                <option value=86>DRX Clear</option>
+                <option value=87>DRX Peach</option>
+                <option value=88>DRX SeTab</option>
+                <option value=89>DRX Jun</option>
+            </select>
+        </li>
+        <li>
+            <!-- 챔피언 필터 선택 -->
+            <select id="champion" class="form-select" aria-label="Default select example">
+                <option value=-1 selected>챔피언</option>
+                <option value=0>아트록스</option>
+                <option value=1>아리</option>
+                <option value=2>아칼리</option>
+                <option value=3>아크샨</option>
+                <option value=4>알리스타</option>
+                <option value=5>아무무</option>
+                <option value=6>애니비아</option>
+                <option value=7>애니</option>
+                <option value=8>아펠리오스</option>
+                <option value=9>애쉬</option>
+                <option value=10>아우렐리온 솔</option>
+                <option value=11>아지르</option>
+                <option value=12>바드</option>
+                <option value=13>블리츠크랭크</option>
+                <option value=14>브랜드</option>
+                <option value=15>브라움</option>
+                <option value=16>케이틀린</option>
+                <option value=17>카밀</option>
+                <option value=18>카시오페아</option>
+                <option value=19>초가스</option>
+                <option value=20>코르키</option>
+                <option value=21>다리우스</option>
+                <option value=22>다이애나</option>
+                <option value=23>드레이븐</option>
+                <option value=24>문도 박사</option>
+                <option value=25>에코</option>
+                <option value=26>엘리스</option>
+                <option value=27>이블린</option>
+                <option value=28>이즈리얼</option>
+                <option value=29>피들스틱</option>
+                <option value=30>피오라</option>
+                <option value=31>피즈</option>
+                <option value=32>갈리오</option>
+                <option value=33>갱플랭크</option>
+                <option value=34>가렌</option>
+                <option value=35>나르</option>
+                <option value=36>그라가스</option>
+                <option value=37>그레이브즈</option>
+                <option value=38>그웬</option>
+                <option value=39>헤카림</option>
+                <option value=40>하이머딩거</option>
+                <option value=41>일라오이</option>
+                <option value=42>이렐리아</option>
+                <option value=43>아이번</option>
+                <option value=44>잔나</option>
+                <option value=45>자르반 4세</option>
+                <option value=46>잭스</option>
+                <option value=47>제이스</option>
+                <option value=48>진</option>
+                <option value=49>징크스</option>
+                <option value=50>카이사</option>
+                <option value=51>칼리스타</option>
+                <option value=52>카르마</option>
+                <option value=53>카서스</option>
+                <option value=54>카사딘</option>
+                <option value=55>카타리나</option>
+                <option value=56>케일</option>
+                <option value=57>케인</option>
+                <option value=58>케넨</option>
+                <option value=59>카직스</option>
+                <option value=60>킨드레드</option>
+                <option value=61>클레드</option>
+                <option value=62>코그모</option>
+                <option value=63>르블랑</option>
+                <option value=64>리 신</option>
+                <option value=65>레오나</option>
+                <option value=66>릴리아</option>
+                <option value=67>리산드라</option>
+                <option value=68>루시안</option>
+                <option value=69>룰루</option>
+                <option value=70>럭스</option>
+                <option value=71>말파이트</option>
+                <option value=72>말자하</option>
+                <option value=73>마오카이</option>
+                <option value=74>마스터 이</option>
+                <option value=75>미스 포츈</option>
+                <option value=76>오공</option>
+                <option value=77>모데카이저</option>
+                <option value=78>모르가나</option>
+                <option value=79>나미</option>
+                <option value=80>나서스</option>
+                <option value=81>노틸러스</option>
+                <option value=82>니코</option>
+                <option value=83>니달 리</option>
+                <option value=84>녹턴</option>
+                <option value=85>누누와 윌럼프</option>
+                <option value=86>올라프</option>
+                <option value=87>오리아나</option>
+                <option value=88>오른</option>
+                <option value=89>판테온</option>
+                <option value=90> 뽀삐</option>
+                <option value=91>파이크</option>
+                <option value=92>키아나</option>
+                <option value=93>퀸</option>
+                <option value=94>라칸</option>
+                <option value=95>람머스</option>
+                <option value=96>렉사이</option>
+                <option value=97>렐</option>
+                <option value=98>레나타 글라스크</option>
+                <option value=99>레넥톤</option>
+                <option value=100>렝가</option>
+                <option value=101>리븐</option>
+                <option value=102>럼블</option>
+                <option value=103>라이즈</option>
+                <option value=104>사미라</option>
+                <option value=105>세주아니</option>
+                <option value=106>세나</option>
+                <option value=107>세라핀</option>
+                <option value=108>세트</option>
+                <option value=109>샤코</option>
+                <option value=110>쉔</option>
+                <option value=111>쉬바나</option>
+                <option value=112>신지드</option>
+                <option value=113>사이 온</option>
+                <option value=114>시비르</option>
+                <option value=115>스카너</option>
+                <option value=116>소나</option>
+                <option value=117>소라카</option>
+                <option value=118>스웨인</option>
+                <option value=119>사일러스</option>
+                <option value=120>신드라</option>
+                <option value=121>탐 켄치</option>
+                <option value=122>탈리야</option>
+                <option value=123>탈론</option>
+                <option value=124>타릭</option>
+                <option value=125>티 모</option>
+                <option value=126>쓰레쉬</option>
+                <option value=127>트리스타나</option>
+                <option value=128>트런들</option>
+                <option value=129>트린다미어</option>
+                <option value=130>트위스티드 페이트</option>
+                <option value=131>트위치</option>
+                <option value=132>우디르</option>
+                <option value=133>우르곳</option>
+                <option value=134>바루스</option>
+                <option value=135>베인</option>
+                <option value=136>베이가</option>
+                <option value=137>벨코즈</option>
+                <option value=138>벡스</option>
+                <option value=139>바이</option>
+                <option value=140>비에고</option>
+                <option value=141>빅토르</option>
+                <option value=142>블라디미르</option>
+                <option value=143>볼리베어</option>
+                <option value=144>워윅</option>
+                <option value=145>자야</option>
+                <option value=146>제라스</option>
+                <option value=147>신 짜오</option>
+                <option value=148>야스오</option>
+                <option value=149>요네</option>
+                <option value=150>요릭</option>
+                <option value=151>유미</option>
+                <option value=152>자크</option>
+                <option value=153>제드</option>
+                <option value=154>제리</option>
+                <option value=155>직스</option>
+                <option value=156>질리언</option>
+                <option value=157>조이</option>
+                <option value=158>자이라</option>
+            </select>
+        </li>
+        <li>
+            <!-- 비교문 선택 -->
+            <select id="comparator" class="form-select" aria-label="Default select example">
+                <option value=0 selected>AND</option>
+                <option value=1>OR</option>
+            </select>
+        </li>
+        <li>
+            <!-- 검색 버튼 -->
+            <button type="button" class="btn btn-primary" onclick="search()">검색</button>
+        </li>
+        <li>
+            <!-- 추가 버튼 -->
+            <button type="button" class="btn btn-secondary" onclick="insert()">추가</button>
+        </li>
+        <li>
+            <!-- 로그아웃 버튼 -->
+            <% if(user != undefined && user.id == 0){%>
+                <button type="button" class="btn btn-secondary" onclick="fetch('/logout').then(location.href='/')">로그아웃</button>
+            <%}else{%>
+            <!-- 로그인 버튼 -->
+                <button type="button" class="btn btn-secondary" onclick="location.href=('/login')">로그인</button>
+            <%}%>
+        </li>
+    </ul>
+
+</div>
+<!-- "추가" 버튼 클릭시 경기 추가 팝업이 나오는 위치 -->
+<div id="insert-popup" display="none">
+
+</div>
+<script>
+    let page = 1;
+    const spinner = document.getElementById("spinner");
+    const btn = document.getElementById("loadbtn");
+    const t = document.getElementById("team");
+    const p = document.getElementById("player");
+    const c = document.getElementById("champion");
+    const cp = document.getElementById("comparator");
+    let l = document.getElementById('list');
+    let tid = -1;
+    let cid = -1;
+    let pid = -1;
+    let comparator = -1;
+
+    // "list"에 경기 데이터 로드
+    function loadmore() {
+        if (spinner.style.display == "block")
+            return;
+        if (page == -1) {
+            btn.style.display = "none";
+            spinner.style.display = "none";
+            return;
+        } else {
+            btn.style.display = "none";
+            spinner.style.display = "block";
+        }
+        let l = document.getElementById('list');
+        let parser = new DOMParser();
+        fetch(`/page/${page++}?pid=${pid}&tid=${tid}&cid=${cid}&c=${comparator}`)
+            .then((res) => {
+                if (res.status == 200)
+                    return res.text();
+                else {
+                    // 마지막 페이지
+                    page = -1;
+                    return undefined;
+                }
+            })
+            .then((res) => {
+                // /page/:page 에서 읽은 데이터롤 element로 파싱하여 직접 추가해준다.
+                if (res != undefined) {
+                    let doc = parser.parseFromString(res, 'text/html');
+                    let nodes = doc.getElementsByClassName("set-info");
+                    while (nodes.length != 0) {
+                        l.appendChild(nodes[0]);
+                    }
+                    btn.style.display = "block";
+                    spinner.style.display = "none";
+                } else {
+                    spinner.style.display = "none";
+                }
+            })
+    }
+
+    // 검색
+    function search() {
+        // 이전 내용 초기화
+        l.innerHTML = '';
+        page = 1;
+
+        // 검색시 입력된 필터 전역변수에 저장
+        tid = t.value;
+        pid = p.value;
+        cid = c.value;
+        comparator = cp.value;
+
+
+        // 데이터 불러오기
+        loadmore();
+    }
+
+    // 페이지 최하단까지 스크롤시 다음 페이지 로드
+    window.addEventListener('scroll', () => {
+        if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight) {
+            loadmore();
+        }
+    })
+
+    // 첫 페이지 로드
+    loadmore();
+
+    // 경기 입력 팝업 생성
+    let insertdiv = document.getElementById("insert-popup");
+    async function insert() {
+        insertdiv.innerHTML = '';
+        // check session
+
+        let r = await fetch('/insert');
+        if (r.status == 200) {
+            window.scrollTo({ top: 0, behavior: "instant" });
+            let raw = await r.text();
+            insertdiv.innerHTML = raw;
+            
+            insertdiv.setAttribute('display', 'block');
+        } else {
+            alert('로그인이 필요한 기능입니다. 로그인 페이지로 이동합니다.');
+            location.href = '/login';
+        }
+    }
+
+    // 입력 팝업 닫기
+    function closepopup() {
+        insertdiv.innerHTML = '';
+    }
+
+    // 입력 팝업에서 블루팀 선택시 입력창 로드 (팀원 목록 로드)
+    function blueTeamSelect() {
+        let bp = document.getElementById("blue_players");
+        let bt = document.getElementById("blue_team");
+        bp.innerHTML = '';
+        if (bt.value != -1)
+            fetch(`/insert/teaminfo/${bt.value}?side=blue`).then((res) => {
+                return res.text();
+            }).then((res) => {
+                bp.innerHTML = res;
+            })
+
+    }
+
+    // 입력 팝업에서 레드팀 선택시 입력창 로드 (팀원 목록 로드)
+    function redTeamSelect() {
+        let rp = document.getElementById("red_players");
+        let rt = document.getElementById("red_team");
+        rp.innerHTML = '';
+        if (rt.value != -1)
+            fetch(`/insert/teaminfo/${rt.value}?side=red`).then((res) => {
+                return res.text();
+            }).then((res) => {
+                rp.innerHTML = res;
+            })
+
+    }
+
+    // 입력 팝업에서 승패 변경
+    function changeWin() {
+        let bwin = document.getElementById("blue_win");
+        let bw = document.getElementById("blue_w");
+        let rw = document.getElementById("red_w");
+        if (bw.innerText == '승') {
+            rw.innerText = '승'
+            bw.innerText = '패'
+            bwin.value = 0;
+        } else {
+            rw.innerText = '패'
+            bw.innerText = '승'
+            bwin.value = 1;
+        }
+    }
+
+    // 입력 팝업에서 킬스코어 계산
+    function updateTotalKills() {
+        let rtk = document.getElementById('red_kill');
+        let btk = document.getElementById('blue_kill');
+        let be = document.getElementsByClassName('blue_k');
+        let bsum = 0;
+        for (let i = 0; i < be.length; i++) {
+            bsum += parseInt(be[i].value);
+        }
+        btk.value = bsum;
+
+        let re = document.getElementsByClassName('red_k');
+        let rsum = 0;
+        for (let i = 0; i < re.length; i++) {
+            rsum += parseInt(re[i].value);
+        }
+        rtk.value = rsum;
+    }
+
+    // 입력 팝업에서 입력 요청 보내기
+    function send() {
+        let form = document.getElementById('insert_form');
+        try {
+            updateTotalKills();
+        } catch (e) {
+            alert('팀을 선택해 주세요');
+            return;
+        }
+        const data = new URLSearchParams(new FormData(form));
+        fetch('/insert', {
+            method: 'post',
+            body: data,
+        }).then((res) => {
+            if (res.status == 200) {
+                alert('등록 성공!');
+                closepopup();
+                window.location.reload()
+            } else {
+                alert('등록 실패. 입력값을 확인해 주세요.');
+            }
+        })
+    }
+
+    // 경기 삭제
+    function deleteSet(mid, sid, e){
+        fetch(`/delete/${mid}/${sid}`).then((res) => {
+            if(res.status == 200){
+                // 삭제 성공
+                // 해당 set-info 삭제
+                l.removeChild(e);
+            }else{
+                alert('삭제 실패');
+            }
+        })
+    }
+</script>
