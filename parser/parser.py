@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from bs4 import BeautifulSoup
 import requests
 import pymysql
@@ -87,7 +88,7 @@ def parsePage(url):
             addSet(mid, setno, blue_tid, red_tid, blue_win, duration, red_kill, blue_kill)
 
 
-            #match details
+            # 경기 세부정보 xml 파일을 불러온다
             xml = post('https://lol.inven.co.kr/dataninfo/match/match_detail.xml.php',code).replace('<?xml version="1.0" encoding="UTF-8"?>','')
             root = etree.fromstring(xml)
             index = 0
@@ -111,7 +112,7 @@ def parsePage(url):
                     side = 1
                 
                 pid = getPid(p.find('playername').text)
-                #플레이어 없음 : 직접 긁어옴
+                # 등록된 플레이어가 없는경우 : fetchPlayer를 통해 직접 불러온다.
                 if pid == -1:
                     pid = fetchPlayer(p.find('playercode').text, tid, index%5)
                 
@@ -283,3 +284,12 @@ initialize()
 page = 1
 while(parsePage(baseurl+str(page))):
     page += 1
+
+'''
+다음과 같은 경우에는 파서가 제대로 읽어오지 못했다:
+- 플레이어 정보 페이지가 제대로 작성이 안되어 있는 경우
+- 경기 정보에서 유실된 정보가 있을 경우
+- 경기 정보에서 중복된 플레이어가 있을 경우
+
+이러한 경우에는 수동으로 입력을 해 주었다.
+'''
