@@ -521,14 +521,15 @@
 
     // 경기 삭제
     function deleteSet(mid, sid, e){
-        fetch(`/delete/${mid}/${sid}`).then((res) => {
-            if(res.status == 200){
-                // 삭제 성공
-                // 해당 set-info 삭제
-                l.removeChild(e);
-            }else{
-                alert('삭제 실패');
-            }
-        })
+        if(confirm('정말로 삭제할까요?'))
+            fetch(`/delete/${mid}/${sid}`).then((res) => {
+                if(res.status == 200){
+                    // 삭제 성공
+                    // 해당 set-info 삭제
+                    l.removeChild(e);
+                }else{
+                    alert('삭제 실패');
+                }
+            })
     }
 </script>
