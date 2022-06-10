@@ -4,7 +4,10 @@ import pymysql
 import traceback
 from lxml import etree
 
+# 파싱하게 되는 페이지 주소
 baseurl = 'https://lol.inven.co.kr/dataninfo/match/teamList.php?&iskin=lol&category2=166&pg='
+
+# mysql 서버와의 통신을 위한 정보
 db = pymysql.connect(
     user='user', 
     passwd='pass', 
@@ -13,9 +16,11 @@ db = pymysql.connect(
     charset='utf8'
 )
 
+# 요청에 사용되는 헤더
 header={"accept": "*/*","accept-language": "ko-KR,ko;q=0.9","content-type": "application/x-www-form-urlencoded;charset=UTF-8","sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Google Chrome\";v=\"101\"","sec-ch-ua-mobile": "?0","sec-ch-ua-platform": "\"Windows\"","sec-fetch-dest": "empty","sec-fetch-mode": "cors","sec-fetch-site": "same-origin","Referer": "https://lol.inven.co.kr/dataninfo/proteam/proteam.php?code=223&iskin=lol","Referrer-Policy": "strict-origin-when-cross-origin"}
-cookie={'as_state_v2':'I1gBUFdCV0YBGQFtRkRMV0pCV0ZwVkBARlBQAQ8BRltTSlFGfEJXARlYAVBGQFB8UEpNQEZ8RlNMQEsBGRIVFhAXEhIbExEPAU1CTUxQfFBKTUBGfEZTTEBLARkUFhUbEBoTG15e'}
+cookie={'as_state_v2':'브라우저에서 가져와야 하는 값'}
 
+# get 요청을 보내주는 함수 : response의 text를 반환한다
 def get(url):
     response = requests.get(url, headers=header, cookies=cookie)
     for k in response.headers:
@@ -25,11 +30,14 @@ def get(url):
     print(cookie)
     return response.text
 
+# match 세부정보를 불러온다 : match 식별자인 matchcode를 입력값으로 받는다 : response의 text를 반환한다
 def post(url, code):
     data = {'matchcode':code}
     response = requests.post(url,headers=header, cookies=cookie, data=data)
     return response.text
 
+# 경기 데이터가 담긴 웹 페이지에서 모든 데이터를 파싱한다
+# 파싱된 데이터는 db에 저장된다
 def parsePage(url):
     d = BeautifulSoup(get(url), "lxml")
     for e in d.select('div.listFrame'):
@@ -118,7 +126,7 @@ def parsePage(url):
             continue
     return len(d.select_one('span.nexttext')['class']) == 2
 
-
+# 팀 이름으로 팀 식별자 tid를 불러온다
 def getTid(name):
     with db.cursor() as c:
         # check team exists
@@ -127,6 +135,7 @@ def getTid(name):
         if row != None:
             return row[0]
 
+# 이름으로 플레이어 식별자 pid를 불러온다
 def getPid(name):
     with db.cursor() as c:
         # check player exists
@@ -136,6 +145,7 @@ def getPid(name):
             return row[0]
         return -1
 
+# 플레이어 정보를 불러와서 db에 저장한다
 def fetchPlayer(code, tid, position):
     d = BeautifulSoup(get('https://lol.inven.co.kr/dataninfo/proteam/progamer.php?code='+code),'lxml')
     username = d.select_one('h2.block.name').text
@@ -158,8 +168,7 @@ def fetchPlayer(code, tid, position):
         print(e)
     return addPlayer(username, realname, position, tid)
 
-
-
+# db의 plays 테이블에 플레이어 기록을 추가한다
 def addPlay(mid, sid, pid, side, ban, champion, kill, death, assist):
     with db.cursor() as c:
         # check exists
@@ -172,6 +181,7 @@ def addPlay(mid, sid, pid, side, ban, champion, kill, death, assist):
         db.commit()
         return c.lastrowid
 
+# db의 sets 테이블에 세트 정보를 추가한다
 def addSet(mid, sid, blue_team, red_team, blue_win, duration, red_kill, blue_kill):
     with db.cursor() as c:
         # check exists
@@ -185,7 +195,7 @@ def addSet(mid, sid, blue_team, red_team, blue_win, duration, red_kill, blue_kil
         return c.lastrowid
 
 
-
+# db의 matches 테이블에 경기 정보를 추가한다
 def addMatch(match_name, day, date):
     with db.cursor() as c:
         # check exists
@@ -198,6 +208,7 @@ def addMatch(match_name, day, date):
         db.commit()
         return c.lastrowid
 
+# db의 team 테이블에 팀 정보를 추가한다
 def addTeam(name, rank, match_count, win, lose, kda):
     with db.cursor() as c:
         # check team exists
@@ -210,6 +221,7 @@ def addTeam(name, rank, match_count, win, lose, kda):
         db.commit()
         return c.lastrowid
 
+# db의 player 테이블에 플레이어 정보를 추가한다
 def addPlayer(username, realname, position, tid):
     with db.cursor() as c:
         # check player exists
@@ -223,7 +235,7 @@ def addPlayer(username, realname, position, tid):
         return c.lastrowid
 
 
-# 팀부터 긁어와서 팀-플레이어 리스트 쫙 뽑고 시작함
+# 팀 정보 + 해당 팀의 플레이어 정보들을 불러온다
 def initialize():
     try: 
         md = BeautifulSoup(get('https://lol.inven.co.kr/dataninfo/proteam/proteam_gate.php'), "lxml")
@@ -265,8 +277,9 @@ def initialize():
     except:
         return
 
-
-#initialize()
+# 팀 정보와 플레이어 정보를 불러온다
+initialize()
+# page 1부터 시작하여 마지막 페이지까지 경기 데이터를 불러온다
 page = 1
 while(parsePage(baseurl+str(page))):
     page += 1
